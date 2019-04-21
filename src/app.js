@@ -5,8 +5,9 @@ const app = express()
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
-
 const port = process.env.PORT || 3000
+
+
 // Define paths for Express config
 const publicDirectoryPath = path.join(__dirname, '../public')
 const viewsPath = path.join(__dirname, '../templates/views')
@@ -45,12 +46,10 @@ app.get('/products', (req, res)=>{
     if(!req.query.search){
         return res.send(
             'Please provide a search term'
-        )
-    }
+        )}
     res.send(
         {product:[]
-    }
-    )
+    })
 })
 //static
 app.get('/weather', (req, res) =>{
@@ -58,12 +57,11 @@ app.get('/weather', (req, res) =>{
         return res.send({error:'You must provide an address'
        })
     }
-    geocode(req.query.address, (error, {longitude, latitude, location}={})=>{
+    geocode(req.query.address, (error, {longitude, latitude, location} = {}) => {
         if(error){
             return res.send({error})
-       }
-
-    forecast(latitude, longitude, (error, forecastData)=>{
+        }
+    forecast(latitude, longitude, (error, forecastData) => {
         if(error){
             return res.send({error})
         }
@@ -78,14 +76,6 @@ app.get('/weather', (req, res) =>{
    })
 })
 
-
-//method on app. takes in two arguments. first is route. second is what is to happen
-// req=request res=response-> can use various methods on response allowing us 
-//to customize what is sent back to requestor
-// app.com is a fictional domain
-//app.com/help
-//app.com/about
-
 app.get('/help/*', (req, res)=> {
     res.render('404', {
         title: '404',
@@ -93,17 +83,19 @@ app.get('/help/*', (req, res)=> {
         errorMessage:'Help Article Not Found'
      })
 })
-//Set up error message. Expresses use * to indicate aything else (wildcard)
-app.get('*', (req, res)=>{  
+
+//Set up error message. Expresses uses * as (wildcard)
+app.get('*', (req, res) =>{  
     res.render('404', {
         title: '404',
         name: 'Isabel Gutierrez-Pils',
         errorMessage: 'Page Not Found'
- 
      })
 })
-// need to start browser - only used one time
+
+// start browser
 app.listen(port, ()=>{
-    //callback that runs when server is up and running
+
+    //callback that runs when server is up 
     console.log('Server is up on port PORT '+ port )
 })

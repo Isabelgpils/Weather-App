@@ -1,9 +1,6 @@
 
 body{
-
     color:white;
-    /* background-color: rgb(198, 240, 135); */
-    
     background-size: cover;
     background: linear-gradient(rgba(4, 193, 149, 0.85), rgba(69, 6, 243, 0.80)) no-repeat;
 
@@ -19,14 +16,11 @@ body{
 }
 .main-content{
     flex-grow: 1;
-
 }
 h1{
     font-size: 75px;
     margin-bottom: 16px;
-
 }
-
 .portrait{
    width: 250px;
    border: 2px solid white;
@@ -44,7 +38,6 @@ header{
 }
 
 footer{
-
     color: white;
     border-top: 1px solid lightgrey;
     margin-top: 16px;
@@ -63,7 +56,4 @@ button{
 }
 #message-1, #message-2{
     color: white;
-
-
-
 }
